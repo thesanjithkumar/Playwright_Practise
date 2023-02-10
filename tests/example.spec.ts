@@ -17,18 +17,24 @@ test('get started link', async ({ page }) => {
   await expect(page).toHaveURL(/.*intro/);
 });
 
-test('test login', async ({ page }) => {
-  await page.goto('localhost:3000/login');
+test('contact form fill', async ({ page }) => {
+  await page.goto('https://sanjithkumar.tech/');
+  await page.getByRole('button', { name: 'Contact me' }).click();
+  await expect(page).toHaveURL(/.*contact/);
+  await page.locator(".fname").fill("Test")
+  await page.locator(".email").fill("test@gmail.com")
+  await page.locator(".subject").fill("playwwright Test")
+  await page.locator("#message").fill("playwwright Test practice")
+  await page.screenshot({ path: 'beforesubmit.png', fullPage: true })
+  await page.locator(".submit").click()
+});
 
-  // Click the get started link.
-  // await page.getByRole('link', { name: 'Sign in' }).click();
+test('project screenshot', async ({ page }) => {
+  await page.goto('https://sanjithkumar.tech/');
+  await page.getByRole('button', { name: 'View more' }).click();
+  await expect(page).toHaveURL(/.*project/);
+  await page.getByAltText('Teach Quiz using React JS').click()
+  await page.waitForTimeout(3000);
+  await page.screenshot({ path: 'project_1.png', fullPage: true })
 
-  // Expects the URL to contain intro.
-  // await expect(page).toHaveURL(/.*login*./);
-  await page.getByLabel("Username").fill("testUser")
-  await page.getByLabel("Password").fill("1234")
-  // await expect(page.getByLabel("Username")).toContainText('testUser')
-  // await expect(page.getByLabel("Password")).toContainText('1234')
-  await page.getByRole("button", { name: "login" }).click()
-  await expect(page.getByText('Instantly deploy your Next.js site to a shareable URL with Vercel.')).toBeVisible();
 });
