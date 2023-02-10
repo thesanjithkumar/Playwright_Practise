@@ -4,9 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thesanjithkumar/Playwright_Practise.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thesanjithkumar/Playwright_Practise/issues"
+  },
+  "homepage": "https://github.com/thesanjithkumar/Playwright_Practise#readme",
   "devDependencies": {
     "@playwright/test": "^1.30.0"
   }
