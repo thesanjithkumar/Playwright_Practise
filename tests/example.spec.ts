@@ -57,10 +57,10 @@ test("book my show ticket booking", async ({ page }) => {
   await page.getByRole('listitem').getByText('2D', { exact: true }).click()
   // await page.getByRole('listitem').filter({ hasText: new RegExp(`${theatername} INFO ?(01:30 PM)? ?(04:30 PM)? ?(07:30 PM)? ?(10:00 PM).*`) }).getByRole('link', { name: '07:30 PM' }).click();
   await page.getByRole('listitem').filter({ hasText: theaterName }).getByRole('link', { name: showTime }).click();
-  if (await page.locator('#btnPopupAccept').isVisible) {
-    // await page.locator('#btnPopupAccept').click()
-    await page.getByText(/Select Seats/).click()
+  if (await page.locator('#btnPopupAccept').isVisible()) {
+    await page.locator('#btnPopupAccept').click()
   }
+  await page.getByText(/Select Seats/).click()
   await page.getByRole('row', { name: new RegExp(`${row}( [0-9] [0-9]+)*( ([0-9][0-9]))*`) }).getByRole('link', { name: seatNumber, exact: true }).click();
   await page.getByRole('link', { name: new RegExp(`Pay Rs.[0-9]+.[0-9]+`) }).click();
   await page.waitForTimeout(5000);
